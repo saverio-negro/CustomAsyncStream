@@ -1,6 +1,8 @@
 # `CustomAsyncStream`
 
 ```swift
+import SwiftUI
+
 struct CustomAsyncStream<Element>: AsyncSequence {
     
     typealias Element = Element
@@ -42,7 +44,6 @@ extension CustomAsyncStream {
             return await self.pull()
         }
         
-        // - TODO: Implement a `pull` method for the iterator to either
         // pull the next element in the buffer queue, or await on the
         // continuation to push new values into the stream.
         func pull() async -> Element? {
@@ -60,7 +61,6 @@ extension CustomAsyncStream {
    It mimics Apple's `AsyncStream<Element>.Continuation` type and functions as
    a "Push" model for the async stream.
 */
-
 extension CustomAsyncStream {
     
     struct Continuation {
@@ -94,7 +94,6 @@ An instance of the `AsyncStreamState` actor is dependency-injected in the constr
 of both the `Continuation` as well as the `Iterator` types in order to be
 able to refer to the same object in the Heap Memory.
 */
-
 extension CustomAsyncStream {
     
     actor AsyncStreamState {
